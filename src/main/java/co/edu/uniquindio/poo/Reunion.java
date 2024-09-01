@@ -51,7 +51,7 @@ public class Reunion {
 
     public void agregarAsistente(Contacto contacto) {
         if (Grupo.validarNombreTelefono(contacto.getNombre(), contacto.getTelefono(), asistentes)) {
-            Contacto.mostrarMensaje("¡El contacto ya está en la lista de asistentes de la reunión!");
+            Contacto.mostrarMensaje("¡El contacto " + contacto.getNombre() +" ya está en la lista de asistentes de la reunión!");
             
         } else {
             asistentes.add(contacto);
@@ -69,7 +69,7 @@ public class Reunion {
             }
         }
         if (!removed){
-            Contacto.mostrarMensaje("Error: El asistente " +nombre+ " no hace parte de la reunión");
+            Contacto.mostrarMensaje("!Error al ingresar un assistente a la reunión " + descripcion + "! El asistente " +nombre+ " no hace parte de la reunión");
         }
     }
 

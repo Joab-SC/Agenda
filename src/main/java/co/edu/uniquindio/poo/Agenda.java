@@ -44,7 +44,7 @@ public class Agenda {
         if (!Grupo.validarNombreTelefono(contacto.getNombre(), contacto.getTelefono(), contactos)) {
             contactos.add(contacto);
         } else {
-            Contacto.mostrarMensaje("¡Error! El contacto ya existe en la agenda.");
+            Contacto.mostrarMensaje("¡Error intentar agregar un contacto! El contacto " + contacto.getNombre() + " ya existe en la agenda.");
         }
     }
 
@@ -59,7 +59,7 @@ public class Agenda {
             }
         }
         if (!removed){
-            Contacto.mostrarMensaje("Error: contacto " +nombre+ " no hace parte del grupo");
+            Contacto.mostrarMensaje("¡Error al intentar eliminar un contacto! El contacto " +nombre+ " no hace parte del grupo");
         }
     }
         
@@ -68,7 +68,7 @@ public class Agenda {
         if (!validarNombreCategoria(grupo.getNombre(), grupo.getCategoria())){
             grupos.add(grupo);
         } else {
-            Contacto.mostrarMensaje("¡Error! Ya hay un grupo llamado " + grupo.getNombre() + "de la categoria" + grupo.getCategoria());
+            Contacto.mostrarMensaje("¡Error al intentar agregar un grupo! Ya hay un grupo llamado " + grupo.getNombre() + "de la categoria" + grupo.getCategoria());
         }
     }
 
@@ -83,7 +83,7 @@ public class Agenda {
             }
         }
         if (!removed){
-            Contacto.mostrarMensaje("¡Error! No existe una grupo llamado  " +nombre+ " de categoria " +categoria);
+            Contacto.mostrarMensaje("¡Error al intentar eliminar un grupo! No existe una grupo llamado  " +nombre+ " de categoria " +categoria);
         }
     }
 
@@ -92,7 +92,7 @@ public class Agenda {
         if (!validarFechaHora(reunion.getFecha(), reunion.getHora())) {
             reuniones.add(reunion);
         } else {
-            Contacto.mostrarMensaje("¡Error! Ya hay una reunión agendada  el " +reunion.getFecha().toString()+  " a las " +reunion.getHora());
+            Contacto.mostrarMensaje("¡Error al agendar una reunión! Ya hay una reunión agendada  el " +reunion.getFecha().toString()+  " a las " +reunion.getHora());
         }
     }
 
@@ -107,7 +107,7 @@ public class Agenda {
             }
         }
         if (!removed){
-            Contacto.mostrarMensaje("¡Error! No existe una reunión agendada el  " +fecha+ " a las " +hora);
+            Contacto.mostrarMensaje("¡Error al intentar eliminar una reunión! No existe una reunión agendada el  " +fecha+ " a las " +hora);
         }
     }
 
@@ -140,16 +140,16 @@ public class Agenda {
 
     @Override
     public String toString() {
-        return "Agenda:\n" +
+        return "Agenda:\n\n" +
                "Contactos:\n" +
                contactos.stream()
                         .map(contacto -> "  - " + contacto.getNombre() + " (" + contacto.getAlias() + ")\n")
                         .reduce("", String::concat) +
-               "Grupos:\n" +
+               "\n\nGrupos:\n" +
                grupos.stream()
                      .map(Grupo::toString)
                      .reduce("", String::concat) +
-               "Reuniones:\n" +
+               "\n\nReuniones:\n" +
                reuniones.stream()
                         .map(Reunion::toString)
                         .reduce("", String::concat);

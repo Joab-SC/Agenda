@@ -33,6 +33,8 @@ public class App {
 
         // Tratar de eliminar un contacto no existente
         grupo.eliminarContacto("Danilo", "314578692");
+        //Mostrar el grupo sin cambios
+        Contacto.mostrarMensaje(grupo.toString() + "\n\n");
 
         // Eliminar un contacto del grupo
         grupo.eliminarContacto("Daniel", "314578692");
@@ -46,31 +48,49 @@ public class App {
         Reunion reunion = new Reunion("Reunión de amigos", LocalDate.of(2024, 6, 20), LocalTime.of(12, 0));
         reunion.agregarAsistente(contacto1);
         reunion.agregarAsistente(contacto3);
-
-
         // Mostrar la reunión
-        Contacto.mostrarMensaje(reunion.toString());
+        Contacto.mostrarMensaje(reunion.toString() + "\n\n");
+
 
         // Eliminar un asistente de la reunion
         reunion.eliminarAsistente("Daniel", "314578692");
 
         // Mostrar la reunión
-        Contacto.mostrarMensaje(reunion.toString());
+        Contacto.mostrarMensaje(reunion.toString() + "\n\n");
+
+        // Tratar de eiliminar un asistente que no existe
+        reunion.eliminarAsistente("Esteban", "3145792");
+
+        // Mostrar la reunión
+        Contacto.mostrarMensaje(reunion.toString() + "\n\n");
+
 
         // Crear una agenda y agregar elementos
         Agenda agenda = new Agenda();
         agenda.agregarContacto(contacto1);
         agenda.agregarContacto(contacto2);
         agenda.agregarGrupo(grupo);
+        agenda.agregarGrupo(grupo2);
         agenda.agregarReunion(reunion);
 
         // Mostrar la agenda
-        Contacto.mostrarMensaje(agenda.toString());
+        Contacto.mostrarMensaje(agenda.toString() + "\n\n");
 
         // Eliminar un contacto y mostrar la agenda actualizada
         agenda.eliminarContacto("Juan Esteban", "31458692");
         Contacto.mostrarMensaje("Agenda después de eliminar un contacto:");
-        Contacto.mostrarMensaje(agenda.toString());
+        Contacto.mostrarMensaje(agenda.toString() + "\n\n");
+
+
+        // Eliminar un grupo y mostrar la agenda actualizada
+        agenda.eliminarGrupo("Familia Gomez", Categoria.FAMILIA);
+        Contacto.mostrarMensaje("Agenda después de eliminar un grupo:");
+        Contacto.mostrarMensaje(agenda.toString() + "\n\n");
+
+        // Tratar de eliminar una reunion no existente y mostrar la agenda
+        agenda.eliminarReunion(LocalDate.of(2026, 6, 20), LocalTime.of(12, 0));
+        Contacto.mostrarMensaje("Agenda después de tratar de eliminar una reunión no existente:");
+        Contacto.mostrarMensaje(agenda.toString() + "\n\n");
     }
 }
 
