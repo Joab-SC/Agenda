@@ -38,17 +38,17 @@ public class Grupo {
 
     public void agregarContacto(Contacto contacto){
         if (contactos.size() == 5){
-            Contacto.mostrarMensaje("¡Error al ingresar un nuevo miembro, el grupo ya se llenó!");
+            Contacto.mostrarMensaje("¡Error al agregar un nuevo contacto al grupo" +nombre+ "! El grupo ya se llenó!");
         }
-        else if(validarNombreTelefono(contacto.getNombre(), contacto.getTelefono())){
-            Contacto.mostrarMensaje("¡Error!, el contacto " +contacto.getNombre()+ " con número de telefono: "+contacto.getTelefono()+ "ya está en el grupo");
+        else if(validarNombreTelefono(contacto.getNombre(), contacto.getTelefono(), contactos)){
+            Contacto.mostrarMensaje("¡Error al agregar un nuevo contacto al grupo" +nombre+ "! El contacto " +contacto.getNombre()+ " con número de teléfono: "+contacto.getTelefono()+ "ya está en el grupo");
         }
         else{
             contactos.add(contacto);
         }
     }
 
-    public boolean validarNombreTelefono(String nombre, String telefono){
+    public static boolean validarNombreTelefono(String nombre, String telefono, ArrayList<Contacto> contactos){
         boolean contactoRepetido = false;
         for(Contacto contacto: contactos){
             if (contacto.getNombre().equals(nombre) && contacto.getTelefono().equals(telefono)){
@@ -59,23 +59,30 @@ public class Grupo {
         return contactoRepetido;
     }
 
-    public void eliminarContacto(String nombre, String telfono){
+    public void eliminarContacto(String nombre, String telefono){
+        boolean removed = false;
         for(Contacto contacto: contactos){
-            if (contacto.getNombre().equals(nombre) && contacto.getTelefono().equals(telfono)){
+            if (contacto.getNombre().equals(nombre) && contacto.getTelefono().equals(telefono)){
                 contactos.remove(contacto);
+                removed = true;
                 break;
             }
         }
-
+        if (!removed){
+            Contacto.mostrarMensaje("¡Error al eliminar un contacto del grupo " +this.nombre + "! El contacto " +nombre+ " no hace parte del grupo");
+        }
     }
 
+    
     @Override
     public String toString() {
-        return "Grupo [nombre=" + nombre + ", categoria=" + categoria + ", contactos=" + contactos + "]";
+        return "Grupo: " + nombre + "\n" +
+               "Categoría: " + categoria + "\n" +
+               "Contactos:\n" +
+               contactos.stream()
+                        .map(contacto -> "  - " + contacto.getNombre() + " (" + contacto.getAlias() + ")\n")
+                        .reduce("", String::concat);
     }
-
     
-
-
-    
+ 
 }
