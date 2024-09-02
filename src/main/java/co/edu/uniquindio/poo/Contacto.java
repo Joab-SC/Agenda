@@ -14,6 +14,16 @@ public class Contacto {
         this.direccion = direccion;
         this.telefono = telefono;
         this.email = email;
+        
+        assert !nombre.isBlank();
+        assert !alias.isBlank();
+        assert !direccion.isBlank();
+        assert !telefono.isBlank();
+        assert !email.isBlank();
+        assert email.contains("@");
+        assert telefono.chars().anyMatch(Character :: isDigit);
+
+
     }
 
     public String getNombre() {

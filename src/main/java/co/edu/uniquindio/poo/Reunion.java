@@ -15,6 +15,9 @@ public class Reunion {
         this.fecha = fecha;
         this.hora = hora;
         this.asistentes = new ArrayList<>();
+
+        assert !descripcion.isBlank();
+        assert !fecha.isBefore(LocalDate.now());
     }
 
     public String getDescripcion() {

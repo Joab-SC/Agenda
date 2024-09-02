@@ -7,23 +7,28 @@
  */
 package co.edu.uniquindio.poo;
 
-import static org.junit.jupiter.api.Assertions.assertTrue;
+import static org.junit.jupiter.api.Assertions.assertThrows;
 import java.util.logging.Logger;
 import org.junit.jupiter.api.Test;
+
+
 
 /**
  * Unit test for simple App.
  */
-public class AppTest {
-    private static final Logger LOG = Logger.getLogger(AppTest.class.getName());
+public class GrupoTest {
+    private static final Logger LOG = Logger.getLogger(ContactoTest.class.getName());
 
     /**
      * Rigorous Test :-)
      */
     @Test
-    public void shouldAnswerWithTrue() {
-        LOG.info("Iniciado test shouldAnswerWithTrue");
-        assertTrue(true);
-        LOG.info("Finalizando test shouldAnswerWithTrue");
+    public void nombreVacio() {
+        LOG.info("Iniciado test nombre vacío");
+
+        assertThrows(Throwable.class, () -> new Grupo(" ", Categoria.AMIGOS));
+
+        LOG.info("Finalizando test datos nombre vacío");
     }
+
 }

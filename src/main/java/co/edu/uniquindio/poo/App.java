@@ -45,7 +45,7 @@ public class App {
         
 
         // Crear una reunión
-        Reunion reunion = new Reunion("Reunión de amigos", LocalDate.of(2024, 6, 20), LocalTime.of(12, 0));
+        Reunion reunion = new Reunion("Reunión de amigos", LocalDate.of(2025, 1, 6), LocalTime.of(20, 48));
         reunion.agregarAsistente(contacto1);
         reunion.agregarAsistente(contacto3);
         // Mostrar la reunión

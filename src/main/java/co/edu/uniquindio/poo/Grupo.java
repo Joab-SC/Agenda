@@ -6,10 +6,13 @@ public class Grupo {
     private Categoria categoria;
     private ArrayList <Contacto> contactos;
 
+
     public Grupo(String nombre, Categoria categoria){
         this.nombre = nombre;
         this.categoria = categoria;
         contactos = new ArrayList<>();
+
+        assert !nombre.isBlank();
     }
 
     public String getNombre() {
