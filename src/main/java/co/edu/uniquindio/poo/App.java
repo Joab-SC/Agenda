@@ -15,6 +15,9 @@ public class App {
         Contacto contacto4 = new Contacto("Sebastian", "Sebas", "Simon Bolivar", "34323596", "sebas@gmail.com");
         Contacto contacto5 = new Contacto("Maicol", "Mike", "CAM", "343453536", "maicol@hotmail.com");
 
+        // Mostrar un contacto
+        Contacto.mostrarMensaje(contacto1.toString());
+
         // Crear un grupo y agregar contactos
         Grupo grupo = new Grupo("Los traviesos", Categoria.AMIGOS);
         grupo.agregarContacto(contacto1);
@@ -63,6 +66,7 @@ public class App {
 
         // Mostrar la reunión
         Contacto.mostrarMensaje(reunion.toString() + "\n\n");
+
 
 
         // Crear una agenda y agregar elementos
