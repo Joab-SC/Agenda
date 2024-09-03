@@ -1,11 +1,11 @@
 # agenda
 
-Descripciín basisca de su Proyecto de POO ...
-
+Sistema de agenda de contactos que permita gestionar contactos, grupos de contactos y reuniones; el cual debe permitir la creación, modificación y eliminación de estos.
 # Autores
 
-- Autor 1
-- Autor 2
+- Autor 1: Sergio Posada
+- Autor 2: Michael Álvarez
+- Autor 3: Joab Suárez
 
 # Herramientas
 
