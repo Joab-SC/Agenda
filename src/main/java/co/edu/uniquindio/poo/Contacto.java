@@ -1,5 +1,7 @@
 package co.edu.uniquindio.poo;
 
+import java.util.Scanner;
+
 public class Contacto {
 
     private String nombre;
@@ -64,6 +66,31 @@ public class Contacto {
 
     public void setEmail(String email) {
         this.email = email;
+    }
+
+
+    public static Contacto ingresarContacto(int numero){
+        Scanner scanner = new Scanner(System.in);
+
+        Contacto.mostrarMensaje("Ingresar el contacto número " + numero + "\n");
+        Contacto.mostrarMensaje("Ingrese el nombre del contacto: ");
+        String nombre = scanner.nextLine();
+
+        Contacto.mostrarMensaje("Ingrese el alias del contacto: ");
+        String alias = scanner.nextLine();
+
+        Contacto.mostrarMensaje("Ingrese la dirección del contacto: ");
+        String direccion = scanner.nextLine();
+
+        Contacto.mostrarMensaje("Ingrese el teléfono del contacto: ");
+        String telefono = scanner.nextLine();
+
+        Contacto.mostrarMensaje("Ingrese el E-mail del contacto: ");
+        String email = scanner.nextLine();
+
+        Contacto contacto = new Contacto(nombre, alias, direccion, telefono, email);
+
+        return contacto;
     }
 
     public static void mostrarMensaje(String mensaje){

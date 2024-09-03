@@ -1,6 +1,6 @@
 package co.edu.uniquindio.poo;
-import java.time.LocalTime;
-import java.time.LocalDate;
+
+import javax.naming.ldap.ControlFactory;
 
 /**
  * Hello world!
@@ -8,93 +8,96 @@ import java.time.LocalDate;
  */
 public class App {
     public static void main(String[] args) {
-        // Crear contactos
-        Contacto contacto1 = new Contacto("Daniel", "Dani", "Villa del carmen", "314578692", "daniel@gmail.com");
-        Contacto contacto2 = new Contacto("Juan Esteban", "Juanes", "Colinas", "31458692", "juan@gmail.com");
-        Contacto contacto3 = new Contacto("Maria", "Mari", "Centro", "318785639", "maria@gmail.com");
-        Contacto contacto4 = new Contacto("Sebastian", "Sebas", "Simon Bolivar", "34323596", "sebas@gmail.com");
-        Contacto contacto5 = new Contacto("Maicol", "Mike", "CAM", "343453536", "maicol@hotmail.com");
+        //crear la agenda
+    Agenda agenda = new Agenda();
 
-        // Mostrar un contacto
-        Contacto.mostrarMensaje(contacto1.toString());
-
-        // Crear un grupo y agregar contactos
-        Grupo grupo = new Grupo("Los traviesos", Categoria.AMIGOS);
-        grupo.agregarContacto(contacto1);
-        grupo.agregarContacto(contacto2);
-        grupo.agregarContacto(contacto4);
-        // Mostrar el grupo
-        Contacto.mostrarMensaje(grupo.toString() + "\n\n");
-
-        // Crear otro grupo y agregar contactos
-        Grupo grupo2 = new Grupo("Familia Gomez", Categoria.FAMILIA);
-        grupo2.agregarContacto(contacto1);
-        grupo2.agregarContacto(contacto5);
-        grupo2.agregarContacto(contacto3);
-        // Mostrar el grupo
-        Contacto.mostrarMensaje(grupo2.toString() + "\n\n");
-
-        // Tratar de eliminar un contacto no existente
-        grupo.eliminarContacto("Danilo", "314578692");
-        //Mostrar el grupo sin cambios
-        Contacto.mostrarMensaje(grupo.toString() + "\n\n");
-
-        // Eliminar un contacto del grupo
-        grupo.eliminarContacto("Daniel", "314578692");
-
-        //Mostrar el grupo sin el contacto
-        Contacto.mostrarMensaje(grupo.toString() + "\n\n");
-
+    //agregar contactos
+    Contacto contacto1 = Contacto.ingresarContacto(1);
+    Contacto contacto2 = Contacto.ingresarContacto(2);
+    Contacto contacto3 = Contacto.ingresarContacto(3);
+    Contacto contacto4 = Contacto.ingresarContacto(4);
+    Contacto contacto5 = Contacto.ingresarContacto(5);
+    Contacto contacto6= Contacto.ingresarContacto(6);  
         
+    //agregar grupos
+    Grupo grupo1 = Grupo.ingresarGrupo(1);
+    Grupo grupo2 = Grupo.ingresarGrupo(2);
+    Grupo grupo3 = Grupo.ingresarGrupo(3);
 
-        // Crear una reunión
-        Reunion reunion = new Reunion("Reunión de amigos", LocalDate.of(2025, 1, 6), LocalTime.of(20, 48));
-        reunion.agregarAsistente(contacto1);
-        reunion.agregarAsistente(contacto3);
-        // Mostrar la reunión
-        Contacto.mostrarMensaje(reunion.toString() + "\n\n");
+    //agregar reuniones 
+    Reunion reunion1 = Reunion.ingresarReunion(1);
+    Reunion reunion2 = Reunion.ingresarReunion(2);
+    Reunion reunion3 = Reunion.ingresarReunion(3);
+
+    //agregar a la agenfa
+    agenda.agregarGrupo(grupo1);
+    agenda.agregarGrupo(grupo2);
+    agenda.agregarGrupo(grupo3);
+    agenda.agregarContacto(contacto1);
+    agenda.agregarContacto(contacto2);
+    agenda.agregarContacto(contacto3);
+    agenda.agregarContacto(contacto4);
+    agenda.agregarContacto(contacto5);
+    agenda.agregarContacto(contacto6);
+    agenda.agregarReunion(reunion1);
+    agenda.agregarReunion(reunion2);
+    agenda.agregarReunion(reunion3);
+
+    Contacto.mostrarMensaje(agenda.toString());
+
+    //agregar contactos grupo
+    grupo1.agregarContacto(contacto2);
+    grupo1.agregarContacto(contacto6);
+    grupo2.agregarContacto(contacto4);
+    grupo2.agregarContacto(contacto1);
+    grupo3.agregarContacto(contacto3);
+    grupo3.agregarContacto(contacto5);
+
+    Contacto.mostrarMensaje(agenda.toString());
+
+    //Agregar asistentes a la reunion
+    reunion1.agregarAsistente(contacto1);
+    reunion1.agregarAsistente(contacto2);
+    reunion2.agregarAsistente(contacto3);
+    reunion2.agregarAsistente(contacto4);
+    reunion3.agregarAsistente(contacto5);
+    reunion3.agregarAsistente(contacto6);
+
+    Contacto.mostrarMensaje(agenda.toString());
+
+    // Eliminar contactos del grupo
+    grupo2.eliminarContacto();
+    reunion1.eliminarAsistente();
+
+    Contacto.mostrarMensaje(agenda.toString());
 
 
-        // Eliminar un asistente de la reunion
-        reunion.eliminarAsistente("Daniel", "314578692");
+    // Tratar de elimnar contactos inexistentes
+    agenda.eliminarContacto();
 
-        // Mostrar la reunión
-        Contacto.mostrarMensaje(reunion.toString() + "\n\n");
+    Contacto.mostrarMensaje(agenda.toString());
 
-        // Tratar de eiliminar un asistente que no existe
-        reunion.eliminarAsistente("Esteban", "3145792");
+    // Eliminar una reunion completa de la agenda
+    agenda.eliminarReunion();
 
-        // Mostrar la reunión
-        Contacto.mostrarMensaje(reunion.toString() + "\n\n");
+    
+    Contacto.mostrarMensaje(agenda.toString());
 
+    // Eliminar un contacto de la agenda
+    agenda.eliminarContacto();
 
+    
+    Contacto.mostrarMensaje(agenda.toString());
 
-        // Crear una agenda y agregar elementos
-        Agenda agenda = new Agenda();
-        agenda.agregarContacto(contacto1);
-        agenda.agregarContacto(contacto2);
-        agenda.agregarGrupo(grupo);
-        agenda.agregarGrupo(grupo2);
-        agenda.agregarReunion(reunion);
-
-        // Mostrar la agenda
-        Contacto.mostrarMensaje(agenda.toString() + "\n\n");
-
-        // Eliminar un contacto y mostrar la agenda actualizada
-        agenda.eliminarContacto("Juan Esteban", "31458692");
-        Contacto.mostrarMensaje("Agenda después de eliminar un contacto:");
-        Contacto.mostrarMensaje(agenda.toString() + "\n\n");
+    // Eliminar un grupo de la agenda
+    agenda.eliminarGrupo();
+    
+    Contacto.mostrarMensaje(agenda.toString());
 
 
-        // Eliminar un grupo y mostrar la agenda actualizada
-        agenda.eliminarGrupo("Familia Gomez", Categoria.FAMILIA);
-        Contacto.mostrarMensaje("Agenda después de eliminar un grupo:");
-        Contacto.mostrarMensaje(agenda.toString() + "\n\n");
 
-        // Tratar de eliminar una reunion no existente y mostrar la agenda
-        agenda.eliminarReunion(LocalDate.of(2026, 6, 20), LocalTime.of(12, 0));
-        Contacto.mostrarMensaje("Agenda después de tratar de eliminar una reunión no existente:");
-        Contacto.mostrarMensaje(agenda.toString() + "\n\n");
+
+
     }
 }
 

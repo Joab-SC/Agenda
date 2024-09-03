@@ -2,6 +2,7 @@ package co.edu.uniquindio.poo;
 import java.time.LocalDate;
 import java.time.LocalTime;
 import java.util.ArrayList;
+import java.util.Scanner;
 
 public class Agenda {
     private ArrayList<Contacto> contactos;
@@ -49,7 +50,15 @@ public class Agenda {
     }
 
     
-    public void eliminarContacto(String nombre, String telefono) {
+    public void eliminarContacto() {
+        Scanner scanner = new Scanner(System.in);
+
+        Contacto.mostrarMensaje("Ingrese el nombre del contacto que desea eliminar: ");
+        String nombre = scanner.nextLine();
+
+        Contacto.mostrarMensaje("Ingrese el télefono del contacto que desea eliminar: ");
+        String telefono = scanner.nextLine();
+
         boolean removed = false;
         for(Contacto contacto: contactos){
             if (contacto.getNombre().equals(nombre) && contacto.getTelefono().equals(telefono)){
@@ -73,7 +82,38 @@ public class Agenda {
     }
 
 
-    public void eliminarGrupo(String nombre, Categoria categoria) {
+    public void eliminarGrupo() {
+        Scanner scanner = new Scanner(System.in);
+
+        Contacto.mostrarMensaje("Eliminar un grupo\n\n");
+
+        Contacto.mostrarMensaje("Nombre: ");
+        String nombre = scanner.nextLine();
+
+        Categoria categoria;
+
+        Contacto.mostrarMensaje("Ingrese la categoría del grupo (oficina, fiesta, amigos, familia): ");
+        String cadenaCategoria = scanner.nextLine();
+
+        if (cadenaCategoria.equals("oficina")){
+            categoria = Categoria.OFICINA;
+        } 
+        else if(cadenaCategoria.equals("fiesta")){
+            categoria = Categoria.FIESTA;
+        }
+        else if (cadenaCategoria.equals("amigos")){
+            categoria = Categoria.AMIGOS;
+        } 
+        else if (cadenaCategoria.equals("familia")){
+            categoria = Categoria.FAMILIA;
+        }
+        
+        else{
+            categoria =  null;
+        }
+
+
+
         boolean removed = false;
         for(Grupo grupo: grupos){
             if (grupo.getNombre().equals(nombre) && grupo.getCategoria().equals(categoria)){
@@ -83,7 +123,7 @@ public class Agenda {
             }
         }
         if (!removed){
-            Contacto.mostrarMensaje("¡Error al intentar eliminar un grupo! No existe una grupo llamado  " +nombre+ " de categoria " +categoria);
+            Contacto.mostrarMensaje("¡Error al intentar eliminar un grupo! No existe una grupo llamado  " +nombre+ " de categoria " + cadenaCategoria);
         }
     }
 
@@ -97,10 +137,30 @@ public class Agenda {
     }
 
 
-    public void eliminarReunion(LocalDate fecha, LocalTime hora) {
+    public void eliminarReunion() {
+
+        Scanner scanner = new Scanner(System.in);
+
+        Contacto.mostrarMensaje("Eliminar una reunión\n\n");
+
+        Contacto.mostrarMensaje("Año: ");
+        int año = scanner.nextInt();
+        Contacto.mostrarMensaje("Mes: ");
+        int mes = scanner.nextInt();
+        Contacto.mostrarMensaje("Día: ");
+        int dia = scanner.nextInt();
+        Contacto.mostrarMensaje("Hora: ");
+        int hora = scanner.nextInt();
+        Contacto.mostrarMensaje("Minuto: ");
+        int minuto = scanner.nextInt();
+
+        LocalDate fecha = LocalDate.of(año, mes, dia);
+        LocalTime momento = LocalTime.of(hora, minuto);
+
+
         boolean removed = false;
         for(Reunion reunion: reuniones){
-            if (reunion.getFecha().equals(fecha) && reunion.getHora().equals(hora)){
+            if (reunion.getFecha().equals(fecha) && reunion.getHora().equals(momento)){
                 reuniones.remove(reunion);
                 removed = true;
                 break;

@@ -1,5 +1,6 @@
 package co.edu.uniquindio.poo;
 import java.util.ArrayList;
+import java.util.Scanner;
 
 public class Grupo {
     private String nombre;
@@ -62,7 +63,17 @@ public class Grupo {
         return contactoRepetido;
     }
 
-    public void eliminarContacto(String nombre, String telefono){
+    public void eliminarContacto(){
+        Scanner scanner = new Scanner(System.in);
+
+        Contacto.mostrarMensaje("Ingrese el nombre del contacto que desea eliminar: ");
+        String nombre = scanner.nextLine();
+
+        Contacto.mostrarMensaje("Ingrese el télefono del contacto que desea eliminar: ");
+        String telefono = scanner.nextLine();
+
+
+
         boolean removed = false;
         for(Contacto contacto: contactos){
             if (contacto.getNombre().equals(nombre) && contacto.getTelefono().equals(telefono)){
@@ -74,6 +85,47 @@ public class Grupo {
         if (!removed){
             Contacto.mostrarMensaje("¡Error al eliminar un contacto del grupo " +this.nombre + "! El contacto " +nombre+ " no hace parte del grupo");
         }
+    }
+
+    public static Grupo ingresarGrupo(int numero){
+        Scanner scanner = new Scanner(System.in);
+
+        Contacto.mostrarMensaje("Ingresar el grupo número: " + numero + "\n");
+        Contacto.mostrarMensaje("Ingrese el nombre del grupo: ");
+        String nombre = scanner.nextLine();
+
+        Categoria categoria;
+        while (true){
+            Contacto.mostrarMensaje("Ingrese la categoría del grupo (oficina, fiesta, amigos, familia): ");
+            String cadenaCategoria = scanner.nextLine();
+
+            if (cadenaCategoria.equals("oficina")){
+                categoria = Categoria.OFICINA;
+                break;
+
+            } 
+            else if(cadenaCategoria.equals("fiesta")){
+                categoria = Categoria.FIESTA;
+                break;
+             }
+            else if (cadenaCategoria.equals("amigos")){
+                categoria = Categoria.AMIGOS;
+                break;
+            } 
+            else if (cadenaCategoria.equals("familia")){
+                categoria = Categoria.FAMILIA;
+                break;
+            } 
+
+            else{
+                Contacto.mostrarMensaje("La categoría no está entre las preseleccionadas");
+            }   
+        }
+
+        Grupo grupo = new Grupo(nombre, categoria);
+
+        return grupo;
+
     }
 
     

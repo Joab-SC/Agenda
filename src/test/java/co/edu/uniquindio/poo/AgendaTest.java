@@ -70,40 +70,4 @@ public class AgendaTest {
     }
 
 
-    @Test
-    public void testEliminarContacto() {
-        LOG.info("Iniciado test de la función eliminarContacto");
-
-        Contacto contacto = new Contacto("Francisco", "Pacho", "El granada", "309019289", "pachito@gmail.com");
-        agenda.agregarContacto(contacto);
-        agenda.eliminarContacto("Francisco", "309019289");
-        assertFalse(agenda.getContactos().contains(contacto));
-
-        LOG.info("Finalizando test de la función eliminarContacto");
-    }
-
-    @Test
-    public void testEliminarReunion() {
-        LOG.info("Iniciado test de la función eliminarReunion");
-
-        Reunion reunion = new Reunion("Reunion de negocios", LocalDate.of(2030, 12, 31), LocalTime.of(12, 30, 0));
-        agenda.agregarReunion(reunion);
-        agenda.eliminarReunion(LocalDate.of(2030, 12, 31), LocalTime.of(12, 30, 0));
-        assertFalse(agenda.getReuniones().contains(reunion));
-
-        LOG.info("Finalizando test de la función eliminarReunion");
-    }
-
-    @Test
-    public void testEliminarGrupo() {
-        LOG.info("Iniciado test de la función eliminarGrupo");
-
-        Grupo grupo = new Grupo("Asesores comerciales", Categoria.OFICINA);
-        agenda.agregarGrupo(grupo);
-        agenda.eliminarGrupo("Asesores comerciales", Categoria.OFICINA);
-        assertFalse(agenda.getGrupos().contains(grupo));
-
-        LOG.info("Finalizando test de la función eliminarGrupo");
-    }
-
 }
