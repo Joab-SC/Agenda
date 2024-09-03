@@ -50,10 +50,6 @@ public class App {
     Contacto.mostrarMensaje(agenda.toString());
 
     // Eliminar contactos del grupo
-    Contacto.mostrarMensaje("Eliminar contacto del grupo\n");
-
-
-    // Eliminar contactos del grupo
     Contacto.mostrarMensaje("Eliminar asistente de la reunión\n");
     reunion1.eliminarAsistente();
 
