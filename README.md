@@ -1,6 +1,6 @@
 # agenda
 
-Sistema de agenda de contactos que permita gestionar contactos, grupos de contactos y reuniones; el cual debe permitir la creación, modificación y eliminación de estos.
+Sistema de agenda de contactos que permite gestionar contactos, grupos de contactos y reuniones; los cuales son creados con datos ingresados por el usuario. El proyecto permite la creación, modificación y eliminación de cada dato de cada clase.
 # Autores
 
 - Autor 1: Sergio Posada
